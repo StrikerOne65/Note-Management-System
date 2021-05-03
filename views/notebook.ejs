@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="/css/index.css">
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="container nav">
+        <div>
+          <a href="/" class="logo">NMSystem</a>
+        </div>
+        <ul class="navitem">
+          <li><a href="/" class="nava">home</a></li>
+          <li><a href="/createnb/<%= userid %>" class="nava">Create notebook</a></li>
+          <li><form action="/logout?_method=DELETE" method="post">
+            <button class=nava type="submit">Log Out</button>
+            </form></li>
+        </ul>
+      </div>
+      
+    </div>
+    <div class="container maindiv">
+        <h2 class="display-4 text-center">Your Notebooks</h2>
+        <% if (users.length ==0) {%>
+          <p class="alert alert-warning">Currently there is no Notebook</p>
+          <%}%>
+          <div class=nbcontainer>
+            
+              <% users.forEach(element => { %>
+                <div class="nbcard">
+                  <h3><%= element.bookname %> </h3>
+                  <hr>
+                  <div class="cardcontent">
+                    <div><p><%= element.year %> </p></div>
+                    <div><p><%= element.sem %> </p></div>
+                  </div>
+                  <hr>
+                  <a class="nbbtn" href="/notebook/<%= element.bookid %> ">Go to Notebook</a>
+                </div>
+                
+             <% }) %>
+            
+          </div>
+          <hr>
+          <a href="/createnb/<%= userid %> " class="createnb btn btn-primary">CREATE NOTEBOOK</a>       
+    </div>
+  </body>
+</html>

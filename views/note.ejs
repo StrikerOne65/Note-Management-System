@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="/css/index.css">
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="navbar">
+        <div class="container nav">
+          <div>
+            <a href="/" class="logo">NMSystem</a>
+          </div>
+          <ul class="navitem">
+            <li><a href="/" class="nava">home</a></li>
+            <li><a href="/createnote/<%= bid %>" class="nava">Create note</a></li>
+            <li><form action="/logout?_method=DELETE" method="post">
+              <button class=nava type="submit">Log Out</button>
+              </form></li>
+          </ul>
+        </div>
+        
+      </div>
+
+    <div class="container maindiv">
+        <h2 class="display-4 text-center">Your Notes</h2>
+        <% if (users.length ==0) {%>
+          <p class="alert alert-warning">Currently there is no Note inside</p>
+          <%}%>
+          <div class=notecontainer>
+            
+              <% users.forEach(element => { %>
+                <div class="notecard">
+                    <div class="card-body">
+                      <h5><%= element.subname %> </h5>
+                      <p class="card-text"><%= element.info %> </p>
+                      <p href="#" class="btn btn-primary"><%= element.category %> </p>
+                    </div>
+                    <div class="cardhover">
+                        <a href="<%= element.link %>" target="_blank" class="viewfile">View</a>
+                    </div>
+                  </div>
+                
+             <% }) %>
+            
+          </div>
+          <hr>
+          <a href="/createnote/<%= bid %> " class="createnb btn btn-primary">CREATE NOTES</a>  
+          
+              
+    </div>
+  </body>
+</html>
